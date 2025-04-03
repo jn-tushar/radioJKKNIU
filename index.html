@@ -455,8 +455,8 @@
         <form class="mail-form" onsubmit="sendMail(event)">
             <label for="name">Name</label>
             <input type="text" id="name" name="name" required>
-            <label for="email">Location / Hall</label>
-            <input type="text" id="email" name="email" required>
+            <label for="hall">Location / Hall</label>
+            <input type="text" id="hall" name="hall" required>
             <label for="subject">Subject (Show)</label>
             <input type="text" id="subject" name="subject" required>
             <label for="message">Message</label>
@@ -574,11 +574,11 @@
                 event.preventDefault();
                 const form = event.target;
                 const name = form.name.value;
-                const email = form.email.value;
+                const hall = form.hall.value;
                 const subject = form.subject.value;
                 const message = form.message.value;
 
-                const body = `From: ${name} (${email})\n\n${message}`;
+                const body = `From: ${name} (${hall})\n\n${message}`;
                 const mailtoLink = `mailto:radiojkkniu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
                 window.location.href = mailtoLink;
