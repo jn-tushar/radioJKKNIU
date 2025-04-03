@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Radio JKKNIU - The Voice of The Nazrulians. A student-run youth radio streaming 24/7 with vibes from Jatiya Kabi Kazi Nazrul Islam University.">
+    <meta name="keywords" content="Radio JKKNIU, youth radio, JKKNIU, student radio, music, talk shows">
+    <meta property="og:title" content="Radio JKKNIU - The Voice of The Nazrulians">
+    <meta property="og:description" content="Catch the vibe with Radio JKKNIU—music, talks, and student energy, live 24/7!">
+    <meta property="og:image" content="https://i.imgur.com/UfKReJK.png">
+    <meta property="og:url" content="https://radiojkkniu.netlify.app">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Radio JKKNIU - The Voice of The Nazrulians</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" href="https://i.imgur.com/0gP5C2R.png" type="image/png">
+
+    <style>
+        :root {
+            --primary-color: #ff3e6c; /* Bold pink - youthful energy */
+            --secondary-color: #00ddeb; /* Bright cyan - fresh vibe */
+            --dark-bg: #0f172a; /* Dark slate - modern base */
+            --accent-color: #facc15; /* Yellow - pop of fun */
+            --light-text: #ffffff; /* White - clean and bold */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(120deg, var(--dark-bg), #1e293b);
+            color: var(--light-text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fun Background Elements */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 62, 108, 0.2), transparent 70%);
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulseGlow 8s infinite ease-in-out;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-logo {
+            width: 120px;
+            filter: brightness(0.85) drop-shadow(0 4px 10px rgba(255, 62, 108, 0.7));
+            transition: transform 0.3s ease;
+        }
+
+        header:hover .header-logo {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        .logo-text {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 4rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(255, 62, 108, 0.6);
+            animation: bounceText 2s infinite;
+            margin-top: 1.0rem;
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            text-shadow: 0 2px 8px rgba(0, 221, 235, 0.5);
+        }
+
+        /* Player Section */
+        .player-container {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 62, 108, 0.4);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--primary-color);
+        }
+
+        .player-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 3px 10px rgba(250, 204, 21, 0.6);
+        }
+
+        .visualizer {
+            height: 100px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 6px;
+            margin: 1rem 0;
+        }
+
+        .bar {
+            width: 10px;
+            height: 0;
+            background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            transition: height 0.2s ease;
+            box-shadow: 0 0 8px rgba(255, 62, 108, 0.7);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .btn {
+            background: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 62, 108, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.15);
+            box-shadow: 0 8px 20px rgba(0, 221, 235, 0.7);
+        }
+
+        .btn.hidden {
+            visibility: hidden;
+        }
+
+        .btn.visible {
+            visibility: visible;
+        }
+
+        .volume-control {
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .volume-slider {
+            width: 100%;
+            height: 8px;
+            -webkit-appearance: none;
+            background: rgba(255, 62, 108, 0.3);
+            border-radius: 4px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(250, 204, 21, 0.7);
+        }
+
+        .now-playing {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            text-shadow: 0 2px 6px rgba(0, 221, 235, 0.5);
+        }
+
+        /* About Section */
+        .about {
+            max-width: 700px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(15, 23, 42, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 221, 235, 0.4);
+            text-align: center;
+            border: 2px solid var(--secondary-color);
+        }
+
+        .about h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            text-shadow: 0 3px 10px rgba(255, 62, 108, 0.6);
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 1rem;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.9);
+            border-top: 2px solid var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-icon {
+            font-size: 2rem;
+            color: var(--light-text);
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 62, 108, 0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background: var(--secondary-color);
+            color: var(--dark-bg);
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(0, 221, 235, 0.7);
+        }
+
+        footer p {
+            font-size: 1rem;
+            color: var(--accent-color);
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Dialogue Box */
+        .dialog {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(15, 23, 42, 0.9);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(255, 62, 108, 0.4);
+            border: 2px solid var(--primary-color);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .dialog h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            text-shadow: 0 3px 10px rgba(250, 204, 21, 0.6);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .dialog .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: var(--light-text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .dialog .close-btn:hover {
+            color: var(--secondary-color);
+        }
+
+        .mail-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .mail-form label {
+            font-size: 1rem;
+            color: var(--light-text);
+            font-weight: 600;
+        }
+
+        .mail-form input,
+        .mail-form textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid rgba(255, 62, 108, 0.5);
+            border-radius: 5px;
+            background: rgba(255, 62, 108, 0.1);
+            color: var(--light-text);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+
+        .mail-form input:focus,
+        .mail-form textarea:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
+        }
+
+        .mail-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .mail-form button {
+            background: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 0.75rem;
+            border-radius: 25px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 62, 108, 0.6);
+        }
+
+        .mail-form button:hover {
+            background: var(--secondary-color);
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 221, 235, 0.7);
+        }
+
+        /* Animations */
+        @keyframes pulseGlow {
+            0% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.05); }
+            100% { opacity: 0.3; transform: scale(1); }
+        }
+
+        @keyframes bounceText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -45%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-text { font-size: 3rem; }
+            .header-logo { width: 90px; }
+            .slogan { font-size: 1.2rem; }
+            .player-container, .about { padding: 1.5rem; margin: 1.5rem auto; }
+            .player-title, .about h2 { font-size: 2rem; }
+            .btn { width: 50px; height: 50px; font-size: 1.2rem; }
+            .visualizer { height: 80px; }
+            .social-icon { width: 40px; height: 40px; font-size: 1.5rem; }
+            .dialog { padding: 1.5rem; }
+            .dialog h3 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="https://i.imgur.com/UfKReJK.png" alt="Radio JKKNIU Logo" class="header-logo">
+        <h1 class="logo-text">Radio JKKNIU</h1>
+        <p class="slogan">The Voice of The Nazrulians</p>
+    </header>
+
+    <!-- Player Section -->
+    <section class="player-container" id="player">
+        <h2 class="player-title">Live Vibes</h2>
+        <div class="visualizer" id="visualizer"></div>
+        <div class="controls">
+            <button class="btn visible" id="playBtn"><i class="fas fa-play"></i></button>
+            <button class="btn hidden" id="pauseBtn"><i class="fas fa-pause"></i></button>
+            <button class="btn visible" id="muteBtn"><i class="fas fa-volume-up"></i></button>
+        </div>
+        <div class="volume-control">
+            <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider">
+        </div>
+        <div class="now-playing">🎧 JKKNIU Student Beats</div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About the Vibe</h2>
+        <p>Radio JKKNIU is the ultimate student-run radio from Jatiya Kabi Kazi Nazrul Islam University. We’re the voice of the youth—bringing you pop, rock, hip-hop, classical, and everything in between. From banging tunes to dope talk shows, interviews, and hot topics, we’ve got the vibes to keep the campus buzzing 24/7!</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://www.facebook.com/radioJKKNIU" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" onclick="openDialog('mailDialog'); return false;" class="social-icon"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>© 2024 Radio JKKNIU | <a href="https://radiojkkniu.netlify.app" target="_blank">radiojkkniu.netlify.app</a></p>
+    </footer>
+
+    <!-- Mail Dialogue -->
+    <div id="mailDialog" class="dialog">
+        <button class="close-btn" onclick="closeDialog('mailDialog')">×</button>
+        <h3>Drop Us a Message</h3>
+        <form class="mail-form" onsubmit="sendMail(event)">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject" required>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit">Send Vibe</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Audio Setup
+            const audio = new Audio('https://stream.zeno.fm/risgdzpf1cxtv');
+            audio.preload = 'auto';
+
+            // DOM Elements
+            const playBtn = document.getElementById('playBtn');
+            const pauseBtn = document.getElementById('pauseBtn');
+            const muteBtn = document.getElementById('muteBtn');
+            const volumeSlider = document.getElementById('volumeSlider');
+            const visualizer = document.getElementById('visualizer');
+
+            // Create Visualizer Bars
+            const barCount = 20;
+            for (let i = 0; i < barCount; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'bar';
+                visualizer.appendChild(bar);
+            }
+            const bars = document.querySelectorAll('.bar');
+
+            // Initial Volume
+            audio.volume = volumeSlider.value / 100;
+
+            // Play Button
+            playBtn.addEventListener('click', () => {
+                audio.play().catch(err => {
+                    console.error('Playback failed:', err);
+                    alert('Can’t vibe right now—check your connection!');
+                });
+                playBtn.classList.remove('visible');
+                playBtn.classList.add('hidden');
+                pauseBtn.classList.remove('hidden');
+                pauseBtn.classList.add('visible');
+                if (!audio.muted && audio.volume > 0) startVisualizer();
+            });
+
+            // Pause Button
+            pauseBtn.addEventListener('click', () => {
+                audio.pause();
+                playBtn.classList.remove('hidden');
+                playBtn.classList.add('visible');
+                pauseBtn.classList.remove('visible');
+                pauseBtn.classList.add('hidden');
+                stopVisualizer();
+            });
+
+            // Mute Button
+            muteBtn.addEventListener('click', () => {
+                audio.muted = !audio.muted;
+                muteBtn.innerHTML = audio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+                if (audio.muted || audio.volume == 0) stopVisualizer();
+                else if (!audio.paused) startVisualizer();
+            });
+
+            // Volume Slider
+            volumeSlider.addEventListener('input', () => {
+                audio.volume = volumeSlider.value / 100;
+                muteBtn.innerHTML = volumeSlider.value == 0 ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+                audio.muted = volumeSlider.value == 0;
+                if (audio.muted || audio.volume == 0) stopVisualizer();
+                else if (!audio.paused) startVisualizer();
+            });
+
+            // Visualizer Animation
+            let visualizerInterval;
+            function startVisualizer() {
+                if (visualizerInterval) clearInterval(visualizerInterval);
+                visualizerInterval = setInterval(() => {
+                    bars.forEach(bar => {
+                        const height = Math.random() * 80 + 10;
+                        bar.style.height = `${height}px`;
+                    });
+                }, 100);
+            }
+
+            function stopVisualizer() {
+                if (visualizerInterval) clearInterval(visualizerInterval);
+                bars.forEach(bar => bar.style.height = '0px');
+            }
+
+            // Error Handling
+            audio.addEventListener('error', () => {
+                alert('Vibe interrupted—stream failed. Try again!');
+                playBtn.classList.remove('hidden');
+                playBtn.classList.add('visible');
+                pauseBtn.classList.remove('visible');
+                pauseBtn.classList.add('hidden');
+                stopVisualizer();
+            });
+
+            // Initial State
+            stopVisualizer();
+
+            // Dialogue Functions
+            window.openDialog = function(dialogId) {
+                document.getElementById(dialogId).style.display = 'block';
+            };
+
+            window.closeDialog = function(dialogId) {
+                document.getElementById(dialogId).style.display = 'none';
+            };
+
+            // Mail Form Submission
+            window.sendMail = function(event) {
+                event.preventDefault();
+                const form = event.target;
+                const name = form.name.value;
+                const email = form.email.value;
+                const subject = form.subject.value;
+                const message = form.message.value;
+
+                const body = `From: ${name} (${email})\n\n${message}`;
+                const mailtoLink = `mailto:radiojkkniu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                window.location.href = mailtoLink;
+                closeDialog('mailDialog');
+                form.reset();
+            };
+        });
+    </script>
+</body>
+</html>
