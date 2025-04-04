@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Radio JKKNIU - The Voice of The Nazrulians. A student-run youth radio streaming 24/7 with vibes from Jatiya Kabi Kazi Nazrul Islam University.">
     <meta name="keywords" content="Radio JKKNIU, youth radio, JKKNIU, student radio, music, talk shows">
+    <meta name="author" content="Jannatun Naeem Tushar">
     <meta property="og:title" content="Radio JKKNIU - The Voice of The Nazrulians">
     <meta property="og:description" content="Catch the vibe with Radio JKKNIU—music, talks, and student energy, live 24/7!">
     <meta property="og:image" content="https://i.imgur.com/UfKReJK.png">
@@ -445,7 +446,7 @@
             <a href="https://www.facebook.com/radioJKKNIU" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
             <a href="#" onclick="openDialog('mailDialog'); return false;" class="social-icon"><i class="fas fa-envelope"></i></a>
         </div>
-        <p>© 2025 Radio JKKNIU | <a href="https://radiojkkniu.netlify.app" target="_blank">radiojkkniu.netlify.app</a></p>
+        <p>© 2024 Radio JKKNIU | <a href="https://radiojkkniu.netlify.app" target="_blank">radiojkkniu.netlify.app</a></p>
     </footer>
 
     <!-- Mail Dialogue -->
@@ -457,10 +458,8 @@
             <input type="text" id="name" name="name" required>
             <label for="hall">Location / Hall</label>
             <input type="text" id="hall" name="hall" required>
-            <label for="subject">Subject (Show)</label>
-            <input type="text" id="subject" name="subject" required>
             <label for="message">Message</label>
-            <textarea id="message" name="message"></textarea>
+            <textarea id="message" name="message" required></textarea>
             <button type="submit">Send Vibe</button>
         </form>
     </div>
@@ -575,11 +574,10 @@
                 const form = event.target;
                 const name = form.name.value;
                 const hall = form.hall.value;
-                const subject = form.subject.value;
                 const message = form.message.value;
 
                 const body = `From: ${name} (${hall})\n\n${message}`;
-                const mailtoLink = `mailto:radiojkkniu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                const mailtoLink = `mailto:radiojkkniu@gmail.com?subject=${encodeURIComponent(name + " from " + hall)}&body=${encodeURIComponent(body)}`;
 
                 window.location.href = mailtoLink;
                 closeDialog('mailDialog');
