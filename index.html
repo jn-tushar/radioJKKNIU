@@ -3,586 +3,432 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Radio JKKNIU - The Voice of The Nazrulians. A student-run youth radio streaming 24/7 with vibes from Jatiya Kabi Kazi Nazrul Islam University.">
-    <meta name="keywords" content="Radio JKKNIU, youth radio, JKKNIU, student radio, music, talk shows">
-    <meta name="author" content="Jannatun Naeem Tushar">
-    <meta property="og:title" content="Radio JKKNIU - The Voice of The Nazrulians">
-    <meta property="og:description" content="Catch the vibe with Radio JKKNIU—music, talks, and student energy, live 24/7!">
-    <meta property="og:image" content="https://i.imgur.com/UfKReJK.png">
-    <meta property="og:url" content="https://radiojkkniu.vercel.app">
-    <meta name="twitter:card" content="summary_large_image">
-    <title>Radio JKKNIU - The Voice of The Nazrulians</title>
+    <title>Radio JKKNIU | The Voice of The Nazrulians</title>
+    
+    <meta name="description" content="Radio JKKNIU is a student-driven campus radio station amplifying the voices of Nazrulians with Youth Talk, Pop, Rock, and Top40 hits.">
+    <link rel="canonical" href="https://radiojkkniu.vercel.app">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&family=Bebas+Neue&display=swap" rel="stylesheet">
-    <!-- FontAwesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Favicon -->
-    <link rel="icon" href="https://i.imgur.com/Ve282CB.jpeg" type="image/jpeg">
-
+    <!-- Fonts: Syncopate for bold tech feel, Inter for clean readability -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="https://i.imgur.com/UfKReJK.png" type="image/png">
+    
     <style>
         :root {
-            --primary-color: #ff3e6c; /* Bold pink - youthful energy */
-            --secondary-color: #00ddeb; /* Bright cyan - fresh vibe */
-            --dark-bg: #0f172a; /* Dark slate - modern base */
-            --accent-color: #facc15; /* Yellow - pop of fun */
-            --light-text: #ffffff; /* White - clean and bold */
+            --bg-body: #0d0e15;
+            --bg-card: #161824;
+            --accent: #ff4757; /* Nazrulian Rebel Red */
+            --accent-hover: #ff6b81;
+            --text-main: #f1f2f6;
+            --text-muted: #a4b0be;
+            --border: #2f3542;
+            --radius: 28px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background: linear-gradient(120deg, var(--dark-bg), #1e293b);
-            color: var(--light-text);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
             min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Fun Background Elements */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle, rgba(255, 62, 108, 0.2), transparent 70%);
-            opacity: 0.3;
-            z-index: -1;
-            animation: pulseGlow 8s infinite ease-in-out;
-        }
-
-        /* Header */
-        header {
-            text-align: center;
-            padding: 3rem 1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header-logo {
-            width: 120px;
-            filter: brightness(0.85) drop-shadow(0 4px 10px rgba(255, 62, 108, 0.7));
-            transition: transform 0.3s ease;
-        }
-
-        header:hover .header-logo {
-            transform: rotate(10deg) scale(1.1);
-        }
-
-        .logo-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 0 4px 15px rgba(255, 62, 108, 0.6);
-            animation: bounceText 2s infinite;
-            margin-top: 1.0rem;
-        }
-
-        .slogan {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-            font-weight: 600;
-            text-shadow: 0 2px 8px rgba(0, 221, 235, 0.5);
-        }
-
-        /* Player Section */
-        .player-container {
-            max-width: 700px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(15, 23, 42, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 62, 108, 0.4);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid var(--primary-color);
-        }
-
-        .player-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 3px 10px rgba(250, 204, 21, 0.6);
-        }
-
-        .visualizer {
-            height: 100px;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            gap: 6px;
-            margin: 1rem 0;
-        }
-
-        .bar {
-            width: 10px;
-            height: 0;
-            background: linear-gradient(to top, var(--primary-color), var(--secondary-color));
-            border-radius: 5px;
-            transition: height 0.2s ease;
-            box-shadow: 0 0 8px rgba(255, 62, 108, 0.7);
-        }
-
-        .controls {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-
-        .btn {
-            background: var(--primary-color);
-            color: var(--light-text);
-            border: none;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 62, 108, 0.6);
-            display: flex;
             align-items: center;
-            justify-content: center;
-        }
-
-        .btn:hover {
-            background: var(--secondary-color);
-            transform: scale(1.15);
-            box-shadow: 0 8px 20px rgba(0, 221, 235, 0.7);
-        }
-
-        .btn.hidden {
-            visibility: hidden;
-        }
-
-        .btn.visible {
-            visibility: visible;
-        }
-
-        .volume-control {
-            width: 60%;
-            margin: 0 auto;
-        }
-
-        .volume-slider {
-            width: 100%;
-            height: 8px;
-            -webkit-appearance: none;
-            background: rgba(255, 62, 108, 0.3);
-            border-radius: 4px;
-            outline: none;
-        }
-
-        .volume-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: var(--accent-color);
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(250, 204, 21, 0.7);
-        }
-
-        .now-playing {
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            color: var(--secondary-color);
-            text-shadow: 0 2px 6px rgba(0, 221, 235, 0.5);
-        }
-
-        /* About Section */
-        .about {
-            max-width: 700px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background: rgba(15, 23, 42, 0.8);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 221, 235, 0.4);
-            text-align: center;
-            border: 2px solid var(--secondary-color);
-        }
-
-        .about h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            text-shadow: 0 3px 10px rgba(255, 62, 108, 0.6);
-        }
-
-        .about p {
-            font-size: 1.1rem;
-            color: var(--light-text);
-        }
-
-        /* Footer */
-        footer {
             padding: 2rem 1rem;
-            text-align: center;
-            background: rgba(15, 23, 42, 0.9);
-            border-top: 2px solid var(--accent-color);
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1rem;
+        /* Bento Box Grid Layout */
+        .bento-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto auto;
+            gap: 1.5rem;
+            max-width: 1100px;
+            width: 100%;
         }
 
-        .social-icon {
-            font-size: 2rem;
-            color: var(--light-text);
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255, 62, 108, 0.3);
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .social-icon:hover {
-            background: var(--secondary-color);
-            color: var(--dark-bg);
-            transform: scale(1.2);
-            box-shadow: 0 0 15px rgba(0, 221, 235, 0.7);
-        }
-
-        footer p {
-            font-size: 1rem;
-            color: var(--accent-color);
-        }
-
-        footer a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        footer a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* Dialogue Box */
-        .dialog {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(15, 23, 42, 0.9);
-            border-radius: 20px;
+        .bento-card {
+            background-color: var(--bg-card);
+            border-radius: var(--radius);
             padding: 2rem;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(255, 62, 108, 0.4);
-            border: 2px solid var(--primary-color);
-            z-index: 1000;
-            animation: fadeIn 0.3s ease-in;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
-        .dialog h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            color: var(--accent-color);
-            text-transform: uppercase;
-            text-shadow: 0 3px 10px rgba(250, 204, 21, 0.6);
-            margin-bottom: 1.5rem;
-            text-align: center;
+        .bento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: rgba(255, 71, 87, 0.3);
         }
 
-        .dialog .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: none;
-            border: none;
-            color: var(--light-text);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .dialog .close-btn:hover {
-            color: var(--secondary-color);
-        }
-
-        .mail-form {
+        /* 1. Header & Brand Card */
+        .brand-card {
+            grid-column: span 1;
             display: flex;
             flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(145deg, #161824, #1e2130);
+        }
+
+        .logo {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid var(--accent);
+            padding: 5px;
+            background: #fff;
+            margin-bottom: 1.2rem;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            color: #fff;
+            letter-spacing: -1px;
+            margin-bottom: 0.5rem;
+        }
+
+        .pulse-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 71, 87, 0.1);
+            color: var(--accent);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+        .dot {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        /* 2. Main Player Card (Spans 2 columns) */
+        .player-card {
+            grid-column: span 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .vinyl-record {
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: repeating-radial-gradient(#111, #111 4px, #222 5px, #222 6px);
+            border: 2px solid #333;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .vinyl-record::after {
+            content: ''; width: 25px; height: 25px;
+            background: url('https://i.imgur.com/UfKReJK.png') center/cover;
+            border-radius: 50%; border: 2px solid var(--accent);
+        }
+        .spin { animation: spin 4s linear infinite; }
+
+        .track-text h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            color: #fff;
+        }
+        .track-text p { color: var(--text-muted); font-size: 0.95rem; }
+
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 20px;
+        }
+
+        .play-btn {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            width: 60px; height: 60px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .play-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+
+        .vol-slider {
+            flex: 1; height: 6px;
+            -webkit-appearance: none;
+            background: #2f3542;
+            border-radius: 5px; outline: none;
+        }
+        .vol-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px; height: 16px;
+            border-radius: 50%; background: #fff; cursor: pointer;
+        }
+
+        .visualizer-box { height: 60px; width: 100%; margin-top: 1rem; border-radius: 12px; overflow: hidden; }
+        canvas { width: 100%; height: 100%; }
+
+        /* 3. About & Genres Card */
+        .info-card {
+            grid-column: span 1;
+        }
+        .card-title {
+            font-size: 1.2rem; margin-bottom: 1rem; color: #fff;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .info-card p {
+            font-size: 0.9rem; line-height: 1.6; color: var(--text-muted); margin-bottom: 1.5rem;
+        }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tag {
+            background: #23273a; color: var(--text-main);
+            padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
+        }
+
+        /* 4. Request Form Card (Spans 2 columns) */
+        .form-card {
+            grid-column: span 2;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 1rem;
         }
-
-        .mail-form label {
-            font-size: 1rem;
-            color: var(--light-text);
-            font-weight: 600;
+        .form-full { grid-column: span 2; }
+        
+        .custom-input {
+            width: 100%; padding: 12px 16px;
+            background: #0d0e15; border: 1px solid var(--border);
+            border-radius: 12px; color: #fff; font-family: 'Inter', sans-serif;
+            transition: 0.3s; outline: none;
         }
+        .custom-input:focus { border-color: var(--accent); }
+        textarea.custom-input { resize: vertical; min-height: 80px; }
 
-        .mail-form input,
-        .mail-form textarea {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid rgba(255, 62, 108, 0.5);
-            border-radius: 5px;
-            background: rgba(255, 62, 108, 0.1);
-            color: var(--light-text);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s ease;
+        .submit-btn {
+            background: #fff; color: #000; font-weight: 600;
+            padding: 12px 24px; border: none; border-radius: 12px;
+            cursor: pointer; transition: 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
         }
+        .submit-btn:hover { background: var(--accent); color: #fff; }
 
-        .mail-form input:focus,
-        .mail-form textarea:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 5px rgba(0, 221, 235, 0.5);
+        /* 5. Social Links (Can be added below or inside) */
+        .social-flex { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-link {
+            width: 40px; height: 40px; border-radius: 12px;
+            background: #23273a; display: flex; align-items: center; justify-content: center;
+            color: #fff; text-decoration: none; transition: 0.3s;
         }
+        .social-link:hover { background: var(--accent); }
 
-        .mail-form textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
+        /* Animations & Responsiveness */
+        @keyframes pulse { 0% { transform: scale(0.95); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
 
-        .mail-form button {
-            background: var(--primary-color);
-            color: var(--light-text);
-            border: none;
-            padding: 0.75rem;
-            border-radius: 25px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 62, 108, 0.6);
-        }
-
-        .mail-form button:hover {
-            background: var(--secondary-color);
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(0, 221, 235, 0.7);
-        }
-
-        /* Animations */
-        @keyframes pulseGlow {
-            0% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 0.5; transform: scale(1.05); }
-            100% { opacity: 0.3; transform: scale(1); }
-        }
-
-        @keyframes bounceText {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translate(-50%, -45%); }
-            to { opacity: 1; transform: translate(-50%, -50%); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .logo-text { font-size: 3rem; }
-            .header-logo { width: 90px; }
-            .slogan { font-size: 1.2rem; }
-            .player-container, .about { padding: 1.5rem; margin: 1.5rem auto; }
-            .player-title, .about h2 { font-size: 2rem; }
-            .btn { width: 50px; height: 50px; font-size: 1.2rem; }
-            .visualizer { height: 80px; }
-            .social-icon { width: 40px; height: 40px; font-size: 1.5rem; }
-            .dialog { padding: 1.5rem; }
-            .dialog h3 { font-size: 1.8rem; }
+        @media (max-width: 900px) {
+            .bento-container { grid-template-columns: 1fr; }
+            .brand-card, .player-card, .info-card, .form-card { grid-column: span 1; }
+            .form-grid { grid-template-columns: 1fr; }
+            .form-full { grid-column: span 1; }
+            .track-text h2 { font-size: 1.4rem; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <img src="https://i.imgur.com/UfKReJK.png" alt="Radio JKKNIU Logo" class="header-logo">
-        <h1 class="logo-text">Radio JKKNIU</h1>
-        <p class="slogan">The Voice of The Nazrulians</p>
-    </header>
 
-    <!-- Player Section -->
-    <section class="player-container" id="player">
-        <h2 class="player-title">Live Vibes</h2>
-        <div class="visualizer" id="visualizer"></div>
-        <div class="controls">
-            <button class="btn visible" id="playBtn"><i class="fas fa-play"></i></button>
-            <button class="btn hidden" id="pauseBtn"><i class="fas fa-pause"></i></button>
-            <button class="btn visible" id="muteBtn"><i class="fas fa-volume-up"></i></button>
+    <div class="bento-container">
+        
+        <!-- Box 1: Brand -->
+        <div class="bento-card brand-card">
+            <img src="https://i.imgur.com/UfKReJK.png" alt="JKKNIU Logo" class="logo">
+            <h1 class="brand-name">RADIO JKKNIU</h1>
+            <div class="pulse-badge"><span class="dot"></span> LIVE BROADCAST</div>
+            
+            <div class="social-flex">
+                <a href="https://facebook.com/radiojkkniu" target="_blank" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="mailto:radiojkkniu@gmail.com" class="social-link"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
-        <div class="volume-control">
-            <input type="range" min="0" max="100" value="70" class="volume-slider" id="volumeSlider">
+
+        <!-- Box 2: Player -->
+        <div class="bento-card player-card">
+            <div class="track-info">
+                <div class="vinyl-record" id="disk"></div>
+                <div class="track-text">
+                    <h2 id="currentSong">Campus Connect 📻</h2>
+                    <p>The authentic voice of Nazrulians</p>
+                </div>
+            </div>
+
+            <div class="player-controls">
+                <button class="play-btn" id="playBtn"><i class="fas fa-play" style="margin-left: 4px;"></i></button>
+                <button class="play-btn" id="pauseBtn" style="display:none;"><i class="fas fa-stop"></i></button>
+                
+                <i class="fas fa-volume-down" style="color: var(--text-muted);"></i>
+                <input type="range" min="0" max="100" value="80" class="vol-slider" id="volumeSlider">
+                <button id="muteBtn" style="background:none; border:none; color:var(--text-muted); cursor:pointer; font-size:1.2rem;"><i class="fas fa-volume-up"></i></button>
+            </div>
+
+            <div class="visualizer-box" id="visualizerContainer" style="display: none;">
+                <canvas id="visualizer"></canvas>
+            </div>
         </div>
-        <div class="now-playing">🎧 JKKNIU Student Beats</div>
-    </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2>About the Vibe</h2>
-        <p>Radio JKKNIU is the heartbeat of Jatiya Kabi Kazi Nazrul Islam University, a student-driven radio station that amplifies the voices of Nazrulians. As the authentic voice of the university, it provides a dynamic platform for students to showcase their talents, express their ideas, and celebrate creativity.</p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="social-links">
-            <a href="https://www.facebook.com/radioJKKNIU" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" onclick="openDialog('mailDialog'); return false;" class="social-icon"><i class="fas fa-envelope"></i></a>
+        <!-- Box 3: About -->
+        <div class="bento-card info-card">
+            <h3 class="card-title"><i class="fas fa-bolt" style="color: var(--accent);"></i> Voice of Nazrulians</h3>
+            <p>Radio JKKNIU is the heartbeat of Jatiya Kabi Kazi Nazrul Islam University, a student-driven radio station that amplifies the voices of Nazrulians. As the authentic voice of the university, it provides a dynamic platform for students to showcase their talents, express their ideas, and celebrate creativity.</p>
+            <div class="tags">
+                <span class="tag">Campus Radio</span>
+                <span class="tag">Youth Talk</span>
+                <span class="tag">Pop & Rock</span>
+                <span class="tag">Classical</span>
+            </div>
         </div>
-        <p>© 2024 Radio JKKNIU | <a href="https://radiojkkniu.vercel.app" target="_blank">radiojkkniu.vercel.app</a></p>
-    </footer>
 
-    <!-- Mail Dialogue -->
-    <div id="mailDialog" class="dialog">
-        <button class="close-btn" onclick="closeDialog('mailDialog')">×</button>
-        <h3>Drop Us a Message</h3>
-        <form class="mail-form" onsubmit="sendMail(event)">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required>
-            <label for="hall">Location / Hall</label>
-            <input type="text" id="hall" name="hall" required>
-            <label for="message">Message</label>
-            <textarea id="message" name="message" required></textarea>
-            <button type="submit">Send Vibe</button>
-        </form>
+        <!-- Box 4: Integrated Request Form -->
+        <div class="bento-card form-card">
+            <h3 class="card-title"><i class="fas fa-paper-plane" style="color: var(--accent);"></i> Send a Message to RJ</h3>
+            <form id="requestForm" onsubmit="sendRequest(event)" class="form-grid">
+                <input type="text" id="name" class="custom-input" placeholder="Your Name" required>
+                <input type="text" id="department" class="custom-input" placeholder="Department" required>
+                <input type="text" id="batch" class="custom-input" placeholder="Batch / Session" required>
+                <input type="text" id="hall" class="custom-input" placeholder="Hall / Dormitory (Optional)">
+                <textarea id="message" class="custom-input form-full" placeholder="Write your thoughts or dedicate a song..." required></textarea>
+                <button type="submit" class="submit-btn form-full">Launch <i class="fas fa-rocket"></i></button>
+            </form>
+        </div>
+
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Audio Setup
-            const audio = new Audio('https://stream.zeno.fm/risgdzpf1cxtv');
-            audio.preload = 'auto';
+        // Native Mailto Engine
+        window.sendRequest = function(event) {
+            event.preventDefault();
+            const n = document.getElementById('name').value;
+            const d = document.getElementById('department').value;
+            const b = document.getElementById('batch').value;
+            const h = document.getElementById('hall').value || 'Non-Resident';
+            const m = document.getElementById('message').value;
 
-            // DOM Elements
+            const subject = `Message for Radio JKKNIU from ${n}`;
+            const body = `🎙️ NAZRULIAN CONNECT 🎙️\n\nName: ${n}\nDept: ${d}\nBatch: ${b}\nHall: ${h}\n\nMessage:\n"${m}"\n\n- Sent via Radio JKKNIU BentoApp`;
+            
+            window.location.href = `mailto:radiojkkniu@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            document.getElementById('requestForm').reset();
+        };
+
+        // Player Engine & Visualizer
+        document.addEventListener('DOMContentLoaded', () => {
+            const streamUrl = 'https://stream.zeno.fm/risgdzpf1cxtv';
+            const audio = new Audio();
+            audio.crossOrigin = "anonymous"; 
+            
             const playBtn = document.getElementById('playBtn');
             const pauseBtn = document.getElementById('pauseBtn');
             const muteBtn = document.getElementById('muteBtn');
             const volumeSlider = document.getElementById('volumeSlider');
-            const visualizer = document.getElementById('visualizer');
-
-            // Create Visualizer Bars
-            const barCount = 20;
-            for (let i = 0; i < barCount; i++) {
-                const bar = document.createElement('div');
-                bar.className = 'bar';
-                visualizer.appendChild(bar);
-            }
-            const bars = document.querySelectorAll('.bar');
-
-            // Initial Volume
+            const disk = document.getElementById('disk');
+            const visContainer = document.getElementById('visualizerContainer');
+            const canvas = document.getElementById('visualizer');
+            const ctx = canvas.getContext('2d');
+            
             audio.volume = volumeSlider.value / 100;
+            let audioCtx, analyser, source, dataArray, animId;
 
-            // Play Button
+            function initAudio() {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    analyser = audioCtx.createAnalyser();
+                    source = audioCtx.createMediaElementSource(audio);
+                    source.connect(analyser);
+                    analyser.connect(audioCtx.destination);
+                    analyser.fftSize = 64; 
+                    dataArray = new Uint8Array(analyser.frequencyBinCount);
+                }
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+            }
+
+            function draw() {
+                animId = requestAnimationFrame(draw);
+                canvas.width = visContainer.offsetWidth;
+                canvas.height = visContainer.offsetHeight;
+                analyser.getByteFrequencyData(dataArray);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                const barW = (canvas.width / analyser.frequencyBinCount) * 1.5;
+                let x = 0;
+                for (let i = 0; i < analyser.frequencyBinCount; i++) {
+                    const barH = (dataArray[i] / 255) * canvas.height;
+                    ctx.fillStyle = '#ff4757';
+                    ctx.beginPath();
+                    ctx.roundRect(x, canvas.height - barH, barW - 2, barH, 4);
+                    ctx.fill();
+                    x += barW;
+                }
+            }
+
             playBtn.addEventListener('click', () => {
-                audio.play().catch(err => {
-                    console.error('Playback failed:', err);
-                    alert('Can’t vibe right now—check your connection!');
-                });
-                playBtn.classList.remove('visible');
-                playBtn.classList.add('hidden');
-                pauseBtn.classList.remove('hidden');
-                pauseBtn.classList.add('visible');
-                if (!audio.muted && audio.volume > 0) startVisualizer();
+                if(audio.src !== streamUrl) audio.src = streamUrl;
+                audio.play().then(() => {
+                    initAudio();
+                    playBtn.style.display = 'none'; pauseBtn.style.display = 'flex';
+                    disk.classList.add('spin');
+                    visContainer.style.display = 'block';
+                    draw();
+                }).catch(() => alert('Stream connecting...'));
             });
 
-            // Pause Button
             pauseBtn.addEventListener('click', () => {
-                audio.pause();
-                playBtn.classList.remove('hidden');
-                playBtn.classList.add('visible');
-                pauseBtn.classList.remove('visible');
-                pauseBtn.classList.add('hidden');
-                stopVisualizer();
+                audio.pause(); audio.src = ''; 
+                playBtn.style.display = 'flex'; pauseBtn.style.display = 'none';
+                disk.classList.remove('spin');
+                visContainer.style.display = 'none';
+                cancelAnimationFrame(animId);
             });
 
-            // Mute Button
+            volumeSlider.addEventListener('input', (e) => {
+                audio.volume = e.target.value / 100;
+                muteBtn.innerHTML = audio.volume === 0 ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
+            });
+
             muteBtn.addEventListener('click', () => {
                 audio.muted = !audio.muted;
                 muteBtn.innerHTML = audio.muted ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
-                if (audio.muted || audio.volume == 0) stopVisualizer();
-                else if (!audio.paused) startVisualizer();
             });
 
-            // Volume Slider
-            volumeSlider.addEventListener('input', () => {
-                audio.volume = volumeSlider.value / 100;
-                muteBtn.innerHTML = volumeSlider.value == 0 ? '<i class="fas fa-volume-mute"></i>' : '<i class="fas fa-volume-up"></i>';
-                audio.muted = volumeSlider.value == 0;
-                if (audio.muted || audio.volume == 0) stopVisualizer();
-                else if (!audio.paused) startVisualizer();
-            });
-
-            // Visualizer Animation
-            let visualizerInterval;
-            function startVisualizer() {
-                if (visualizerInterval) clearInterval(visualizerInterval);
-                visualizerInterval = setInterval(() => {
-                    bars.forEach(bar => {
-                        const height = Math.random() * 80 + 10;
-                        bar.style.height = `${height}px`;
-                    });
-                }, 100);
-            }
-
-            function stopVisualizer() {
-                if (visualizerInterval) clearInterval(visualizerInterval);
-                bars.forEach(bar => bar.style.height = '0px');
-            }
-
-            // Error Handling
-            audio.addEventListener('error', () => {
-                alert('Vibe interrupted—stream failed. Try again!');
-                playBtn.classList.remove('hidden');
-                playBtn.classList.add('visible');
-                pauseBtn.classList.remove('visible');
-                pauseBtn.classList.add('hidden');
-                stopVisualizer();
-            });
-
-            // Initial State
-            stopVisualizer();
-
-            // Dialogue Functions
-            window.openDialog = function(dialogId) {
-                document.getElementById(dialogId).style.display = 'block';
-            };
-
-            window.closeDialog = function(dialogId) {
-                document.getElementById(dialogId).style.display = 'none';
-            };
-
-            // Mail Form Submission
-            window.sendMail = function(event) {
-                event.preventDefault();
-                const form = event.target;
-                const name = form.name.value;
-                const hall = form.hall.value;
-                const message = form.message.value;
-
-                const body = `From: ${name} (${hall})\n\n${message}`;
-                const mailtoLink = `mailto:radiojkkniu@gmail.com?subject=${encodeURIComponent(name + " from " + hall)}&body=${encodeURIComponent(body)}`;
-
-                window.location.href = mailtoLink;
-                closeDialog('mailDialog');
-                form.reset();
-            };
+            // Metadata Listener
+            try {
+                const es = new EventSource('https://api.zeno.fm/mounts/metadata/subscribe/risgdzpf1cxtv');
+                es.onmessage = (e) => {
+                    if (e.data !== "ping") {
+                        try {
+                            const meta = JSON.parse(e.data);
+                            if(meta.streamTitle) document.getElementById('currentSong').innerText = meta.streamTitle;
+                        } catch (err) {}
+                    }
+                };
+            } catch (e) {}
         });
     </script>
 </body>
