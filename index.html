@@ -7,27 +7,23 @@
 
     <meta name="google-site-verification" content="3SKWCaKiguP-te2MkoemWb8OEIf_vcdumgQofWzSMvw" />
         
-    <!-- SEO & Meta Tags -->
     <meta name="description" content="Radio JKKNIU is the heartbeat of Jatiya Kabi Kazi Nazrul Islam University. A student-driven campus radio station amplifying the voices of Nazrulians with Youth Talk, Pop, Rock, and Top40 hits.">
     <meta name="keywords" content="Radio JKKNIU, JKKNIU Campus Radio, Nazrul University Radio, Jatiya Kabi Kazi Nazrul Islam University, Youth Talk, Campus Radio Bangladesh, Nazrulians">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://radiojkkniu.vercel.app">
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://radiojkkniu.vercel.app">
     <meta property="og:title" content="Radio JKKNIU - The Heartbeat of JKKNIU">
     <meta property="og:description" content="Tune in to the authentic voice of the university. A dynamic platform for students to showcase talents, express ideas, and celebrate creativity.">
     <meta property="og:image" content="https://i.imgur.com/UfKReJK.png">
 
-    <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://radiojkkniu.vercel.app">
     <meta property="twitter:title" content="Radio JKKNIU - Campus Radio">
     <meta property="twitter:description" content="The student-driven radio station of JKKNIU. Amplifying the voices of Nazrulians 24/7.">
     <meta property="twitter:image" content="https://i.imgur.com/UfKReJK.png">
     
-    <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -55,7 +51,6 @@
     }
     </script>
 
-    <!-- Fonts: Syncopate for bold tech feel, Inter for clean readability -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="https://i.imgur.com/UfKReJK.png" type="image/png">
@@ -177,6 +172,8 @@
 
         .vinyl-record {
             width: 80px; height: 80px;
+            min-width: 80px; height: 80px; /* Fixed mobile layout squish */
+            flex-shrink: 0;
             border-radius: 50%;
             background: repeating-radial-gradient(#111, #111 4px, #222 5px, #222 6px);
             border: 2px solid #333;
@@ -212,6 +209,8 @@
             color: #fff;
             border: none;
             width: 60px; height: 60px;
+            min-width: 60px; height: 60px; /* Fixed mobile oval bug */
+            flex-shrink: 0; /* Ensures it stays a perfect circle in flexbox */
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
@@ -305,7 +304,6 @@
 
     <div class="bento-container">
         
-        <!-- Box 1: Brand -->
         <div class="bento-card brand-card">
             <img src="https://i.imgur.com/UfKReJK.png" alt="JKKNIU Logo" class="logo">
             <h1 class="brand-name">RADIO JKKNIU</h1>
@@ -317,7 +315,6 @@
             </div>
         </div>
 
-        <!-- Box 2: Player -->
         <div class="bento-card player-card">
             <div class="track-info">
                 <div class="vinyl-record" id="disk"></div>
@@ -341,7 +338,6 @@
             </div>
         </div>
 
-        <!-- Box 3: About -->
         <div class="bento-card info-card">
             <h3 class="card-title"><i class="fas fa-bolt" style="color: var(--accent);"></i> Voice of Nazrulians</h3>
             <p>Radio JKKNIU is the heartbeat of Jatiya Kabi Kazi Nazrul Islam University, a student-driven radio station that amplifies the voices of Nazrulians. As the authentic voice of the university, it provides a dynamic platform for students to showcase their talents, express their ideas, and celebrate creativity.</p>
@@ -353,7 +349,6 @@
             </div>
         </div>
 
-        <!-- Box 4: Integrated Request Form -->
         <div class="bento-card form-card">
             <h3 class="card-title"><i class="fas fa-paper-plane" style="color: var(--accent);"></i> Send a Message to RJ</h3>
             <form id="requestForm" onsubmit="sendRequest(event)" class="form-grid">
