@@ -24,37 +24,9 @@
     <meta property="twitter:description" content="The student-driven radio station of JKKNIU. Amplifying the voices of Nazrulians 24/7.">
     <meta property="twitter:image" content="radiojkkniu_logo.png">
     
-    <!-- Favicons -->
     <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" href="android-chrome-192x192.png" type="image/png">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "RadioStation",
-      "name": "Radio JKKNIU",
-      "url": "https://radiojkkniu.vercel.app",
-      "logo": "radiojkkniu_logo.png",
-      "image": "radiojkkniu_logo.png",
-      "description": "Radio JKKNIU is a student-driven radio station that amplifies the voices of Nazrulians, featuring Youth Talk, Campus News, and Top40 music.",
-      "genre": "Campus Radio, Youth Talk, Pop, Rock, Top40",
-      "email": "radiojkkniu@gmail.com",
-      "potentialAction": {
-        "@type": "ListenAction",
-        "target": [
-          {
-            "@type": "EntryPoint",
-            "urlTemplate": "https://radiojkkniu.vercel.app",
-            "actionPlatform": [
-              "http://schema.org/DesktopWebPlatform",
-              "http://schema.org/MobileWebPlatform"
-            ]
-          }
-        ]
-      }
-    }
-    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -89,7 +61,7 @@
         .bento-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: auto auto;
+            grid-template-rows: auto auto auto; /* Added row for cover */
             gap: 1.5rem;
             max-width: 1100px;
             width: 100%;
@@ -111,7 +83,26 @@
             border-color: rgba(255, 71, 87, 0.3);
         }
 
-        /* 1. Header & Brand Card */
+        /* 1. Cover Image Card (New Integrated Style) */
+        .cover-card {
+            grid-column: span 3;
+            padding: 0; /* Removing padding so image fills the card */
+            height: 250px;
+            display: flex;
+        }
+        
+        .cover-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cover-card:hover img {
+            transform: scale(1.05); /* Smooth aesthetic zoom on hover */
+        }
+
+        /* 2. Header & Brand Card */
         .brand-card {
             grid-column: span 1;
             display: flex;
@@ -160,7 +151,7 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* 2. Main Player Card */
+        /* 3. Main Player Card */
         .player-card {
             grid-column: span 2;
             display: flex;
@@ -244,7 +235,7 @@
         .visualizer-box { height: 60px; width: 100%; margin-top: 1rem; border-radius: 12px; overflow: hidden; }
         canvas { width: 100%; height: 100%; }
 
-        /* 3. About & Genres Card */
+        /* 4. About & Genres Card */
         .info-card {
             grid-column: span 1;
         }
@@ -261,7 +252,7 @@
             padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
         }
 
-        /* 4. Request Form Card */
+        /* 5. Request Form Card */
         .form-card {
             grid-column: span 2;
         }
@@ -297,33 +288,13 @@
         }
         .social-link:hover { background: var(--accent); }
 
-        /* 5. Cover Image Section */
-        .cover-section {
-            max-width: 1100px;
-            width: 100%;
-            margin-top: 1.5rem;
-            border-radius: var(--radius);
-            overflow: hidden;
-            border: 1px solid var(--border);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .cover-section:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            border-color: rgba(255, 71, 87, 0.3);
-        }
-        .cover-section img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
         /* Animations & Responsiveness */
         @keyframes pulse { 0% { transform: scale(0.95); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
         @keyframes spin { 100% { transform: rotate(360deg); } }
 
         @media (max-width: 900px) {
             .bento-container { grid-template-columns: 1fr; }
+            .cover-card { grid-column: span 1; height: 180px; }
             .brand-card, .player-card, .info-card, .form-card { grid-column: span 1; }
             .form-grid { grid-template-columns: 1fr; }
             .form-full { grid-column: span 1; }
@@ -335,7 +306,10 @@
 
     <div class="bento-container">
         
-        <!-- Brand Card -->
+        <div class="bento-card cover-card">
+            <img src="radiojkkniu_cover.png" alt="Radio JKKNIU Cover">
+        </div>
+
         <div class="bento-card brand-card">
             <img src="radiojkkniu_logo.png" alt="Radio JKKNIU Logo" class="logo">
             <h1 class="brand-name">RADIO JKKNIU</h1>
@@ -347,7 +321,6 @@
             </div>
         </div>
 
-        <!-- Player Card -->
         <div class="bento-card player-card">
             <div class="track-info">
                 <div class="vinyl-record" id="disk"></div>
@@ -371,7 +344,6 @@
             </div>
         </div>
 
-        <!-- Info Card -->
         <div class="bento-card info-card">
             <h3 class="card-title"><i class="fas fa-bolt" style="color: var(--accent);"></i> Voice of Nazrulians</h3>
             <p>Radio JKKNIU is the heartbeat of Jatiya Kabi Kazi Nazrul Islam University, a student-driven radio station that amplifies the voices of Nazrulians. As the authentic voice of the university, it provides a dynamic platform for students to showcase their talents, express their ideas, and celebrate creativity.</p>
@@ -383,7 +355,6 @@
             </div>
         </div>
 
-        <!-- Request Form Card -->
         <div class="bento-card form-card">
             <h3 class="card-title"><i class="fas fa-paper-plane" style="color: var(--accent);"></i> Send a Message to RJ</h3>
             <form id="requestForm" onsubmit="sendRequest(event)" class="form-grid">
@@ -396,11 +367,6 @@
             </form>
         </div>
 
-    </div>
-
-    <!-- Cover Image Section -->
-    <div class="cover-section">
-        <img src="radiojkkniu_cover.png" alt="Radio JKKNIU Cover">
     </div>
 
     <script>
