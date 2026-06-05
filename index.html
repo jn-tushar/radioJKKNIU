@@ -16,22 +16,27 @@
     <meta property="og:url" content="https://radiojkkniu.vercel.app">
     <meta property="og:title" content="Radio JKKNIU - The Heartbeat of JKKNIU">
     <meta property="og:description" content="Tune in to the authentic voice of the university. A dynamic platform for students to showcase talents, express ideas, and celebrate creativity.">
-    <meta property="og:image" content="https://i.imgur.com/UfKReJK.png">
+    <meta property="og:image" content="radiojkkniu_logo.png">
 
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://radiojkkniu.vercel.app">
     <meta property="twitter:title" content="Radio JKKNIU - Campus Radio">
     <meta property="twitter:description" content="The student-driven radio station of JKKNIU. Amplifying the voices of Nazrulians 24/7.">
-    <meta property="twitter:image" content="https://i.imgur.com/UfKReJK.png">
+    <meta property="twitter:image" content="radiojkkniu_logo.png">
     
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="android-chrome-192x192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" href="android-chrome-192x192.png" type="image/png">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "RadioStation",
       "name": "Radio JKKNIU",
       "url": "https://radiojkkniu.vercel.app",
-      "logo": "https://i.imgur.com/UfKReJK.png",
-      "image": "https://i.imgur.com/UfKReJK.png",
+      "logo": "radiojkkniu_logo.png",
+      "image": "radiojkkniu_logo.png",
       "description": "Radio JKKNIU is a student-driven radio station that amplifies the voices of Nazrulians, featuring Youth Talk, Campus News, and Top40 music.",
       "genre": "Campus Radio, Youth Talk, Pop, Rock, Top40",
       "email": "radiojkkniu@gmail.com",
@@ -53,17 +58,12 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Syncopate:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!--<link rel="icon" href="https://i.imgur.com/UfKReJK.png" type="image/png">-->
-	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-	<link rel="manifest" href="/site.webmanifest">
     
     <style>
         :root {
             --bg-body: #0d0e15;
             --bg-card: #161824;
-            --accent: #ff4757; /* Nazrulian Rebel Red */
+            --accent: #ff4757;
             --accent-hover: #ff6b81;
             --text-main: #f1f2f6;
             --text-muted: #a4b0be;
@@ -79,6 +79,7 @@
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 2rem 1rem;
@@ -159,7 +160,7 @@
             animation: pulse 1.5s infinite;
         }
 
-        /* 2. Main Player Card (Spans 2 columns) */
+        /* 2. Main Player Card */
         .player-card {
             grid-column: span 2;
             display: flex;
@@ -175,19 +176,23 @@
         }
 
         .vinyl-record {
-            width: 80px; height: 80px;
-            min-width: 80px; height: 80px; /* Fixed mobile layout squish */
+            width: 80px;
+            min-width: 80px;
+            height: 80px;
             flex-shrink: 0;
             border-radius: 50%;
             background: repeating-radial-gradient(#111, #111 4px, #222 5px, #222 6px);
             border: 2px solid #333;
             display: flex; align-items: center; justify-content: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            overflow: hidden;
         }
         .vinyl-record::after {
-            content: ''; width: 25px; height: 25px;
-            background: url('https://i.imgur.com/UfKReJK.png') center/cover;
-            border-radius: 50%; border: 2px solid var(--accent);
+            content: '';
+            width: 25px; height: 25px;
+            background: url('radiojkkniu_circle.png') center/cover;
+            border-radius: 50%;
+            border: 2px solid var(--accent);
         }
         .spin { animation: spin 4s linear infinite; }
 
@@ -212,9 +217,10 @@
             background: var(--accent);
             color: #fff;
             border: none;
-            width: 60px; height: 60px;
-            min-width: 60px; height: 60px; /* Fixed mobile oval bug */
-            flex-shrink: 0; /* Ensures it stays a perfect circle in flexbox */
+            width: 60px;
+            height: 60px;
+            min-width: 60px;
+            flex-shrink: 0;
             border-radius: 50%;
             font-size: 1.5rem;
             cursor: pointer;
@@ -255,7 +261,7 @@
             padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 500;
         }
 
-        /* 4. Request Form Card (Spans 2 columns) */
+        /* 4. Request Form Card */
         .form-card {
             grid-column: span 2;
         }
@@ -282,7 +288,7 @@
         }
         .submit-btn:hover { background: var(--accent); color: #fff; }
 
-        /* 5. Social Links (Can be added below or inside) */
+        /* Social Links */
         .social-flex { display: flex; gap: 1rem; margin-top: 1.5rem; }
         .social-link {
             width: 40px; height: 40px; border-radius: 12px;
@@ -290,6 +296,27 @@
             color: #fff; text-decoration: none; transition: 0.3s;
         }
         .social-link:hover { background: var(--accent); }
+
+        /* 5. Cover Image Section */
+        .cover-section {
+            max-width: 1100px;
+            width: 100%;
+            margin-top: 1.5rem;
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cover-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+            border-color: rgba(255, 71, 87, 0.3);
+        }
+        .cover-section img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
         /* Animations & Responsiveness */
         @keyframes pulse { 0% { transform: scale(0.95); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
@@ -308,8 +335,9 @@
 
     <div class="bento-container">
         
+        <!-- Brand Card -->
         <div class="bento-card brand-card">
-            <img src="https://i.imgur.com/UfKReJK.png" alt="JKKNIU Logo" class="logo">
+            <img src="radiojkkniu_logo.png" alt="Radio JKKNIU Logo" class="logo">
             <h1 class="brand-name">RADIO JKKNIU</h1>
             <div class="pulse-badge"><span class="dot"></span> LIVE BROADCAST</div>
             
@@ -319,6 +347,7 @@
             </div>
         </div>
 
+        <!-- Player Card -->
         <div class="bento-card player-card">
             <div class="track-info">
                 <div class="vinyl-record" id="disk"></div>
@@ -342,6 +371,7 @@
             </div>
         </div>
 
+        <!-- Info Card -->
         <div class="bento-card info-card">
             <h3 class="card-title"><i class="fas fa-bolt" style="color: var(--accent);"></i> Voice of Nazrulians</h3>
             <p>Radio JKKNIU is the heartbeat of Jatiya Kabi Kazi Nazrul Islam University, a student-driven radio station that amplifies the voices of Nazrulians. As the authentic voice of the university, it provides a dynamic platform for students to showcase their talents, express their ideas, and celebrate creativity.</p>
@@ -353,6 +383,7 @@
             </div>
         </div>
 
+        <!-- Request Form Card -->
         <div class="bento-card form-card">
             <h3 class="card-title"><i class="fas fa-paper-plane" style="color: var(--accent);"></i> Send a Message to RJ</h3>
             <form id="requestForm" onsubmit="sendRequest(event)" class="form-grid">
@@ -365,6 +396,11 @@
             </form>
         </div>
 
+    </div>
+
+    <!-- Cover Image Section -->
+    <div class="cover-section">
+        <img src="radiojkkniu_cover.png" alt="Radio JKKNIU Cover">
     </div>
 
     <script>
