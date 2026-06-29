@@ -402,6 +402,7 @@
             const streamUrl = 'https://stream.zeno.fm/risgdzpf1cxtv';
             const audio = new Audio();
             audio.crossOrigin = "anonymous"; 
+            audio.preload = "none"; // লাইভ স্ট্রিমের জন্য প্রিলোড বন্ধ রাখা হলো
             
             const playBtn = document.getElementById('playBtn');
             const pauseBtn = document.getElementById('pauseBtn');
@@ -417,12 +418,18 @@
 
             function initAudio() {
                 if (!audioCtx) {
-                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                    // FIX 1: latencyHint 'playback' ব্যবহার করে বাফার সাইজ বাড়ানো হলো যাতে অডিও না আটকায়
+                    const AudioContext = window.AudioContext || window.webkitAudioContext;
+                    audioCtx = new AudioContext({ latencyHint: 'playback' });
+                    
                     analyser = audioCtx.createAnalyser();
+                    analyser.fftSize = 64; 
+                    analyser.smoothingTimeConstant = 0.8; // FIX 2: ভিজুয়ালাইজার ট্রানজিশন আরও স্মুথ করার জন্য
+                    
                     source = audioCtx.createMediaElementSource(audio);
                     source.connect(analyser);
                     analyser.connect(audioCtx.destination);
-                    analyser.fftSize = 64; 
+                    
                     dataArray = new Uint8Array(analyser.frequencyBinCount);
                 }
                 if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -448,10 +455,11 @@
             }
 
             playBtn.addEventListener('click', () => {
-                if(audio.src !== streamUrl) audio.src = streamUrl;
+                audio.src = streamUrl;
                 audio.play().then(() => {
                     initAudio();
-                    playBtn.style.display = 'none'; pauseBtn.style.display = 'flex';
+                    playBtn.style.display = 'none'; 
+                    pauseBtn.style.display = 'flex';
                     disk.classList.add('spin');
                     visContainer.style.display = 'block';
                     draw();
@@ -459,8 +467,13 @@
             });
 
             pauseBtn.addEventListener('click', () => {
-                audio.pause(); audio.src = ''; 
-                playBtn.style.display = 'flex'; pauseBtn.style.display = 'none';
+                audio.pause(); 
+                // FIX 3: অডিও সোর্স ব্ল্যাংক করার সঠিক নিয়ম, যাতে Web Audio Node ক্র্যাশ না করে
+                audio.removeAttribute('src'); 
+                audio.load();
+
+                playBtn.style.display = 'flex'; 
+                pauseBtn.style.display = 'none';
                 disk.classList.remove('spin');
                 visContainer.style.display = 'none';
                 cancelAnimationFrame(animId);
